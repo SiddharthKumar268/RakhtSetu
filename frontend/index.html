@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RakhtSetu - Save Lives Through Blood Donation</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" href="../assets/blood.png" type="image/x-icon">
+</head>
+
+<body>
+  <!-- Intro Video Overlay -->
+  <div class="intro-video-overlay" id="introVideoOverlay">
+    <video id="introVideo" autoplay muted playsinline>
+      <source src="../assets/modernview.mp4" type="video/mp4">
+      <!-- Replace 'assets/intro-video.mp4' with your video path -->
+      Your browser does not support the video tag.
+    </video>
+    <button class="skip-intro" id="skipIntro">Skip Intro ⏭️</button>
+  </div>
+
+  <!-- Animated background elements -->
+  <div class="bg-animation">
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 100 100" class="blood-drop-logo">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path d="M50 20 C50 20, 35 35, 35 50 C35 62, 42 70, 50 70 C58 70, 65 62, 65 50 C65 35, 50 20, 50 20 Z"
+              fill="url(#logoGrad)" />
+            <circle cx="50" cy="45" r="3" fill="white" opacity="0.3" />
+          </svg>
+        </div>
+        <span class="logo-text">RakhtSetu</span>
+      </div>
+      <div class="nav-links">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#impact" class="nav-link">Impact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="gov.html" class="nav-btn">Blood Availability</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-icon">❤️</span>
+          <span class="badge-text">Join 5000+ Life Savers</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="title-line">Save Lives Through</span>
+          <span class="title-highlight">Blood Donation</span>
+        </h1>
+
+        <p class="hero-description">
+          Join our community of heroes and make a difference. Every drop counts,
+          every donor matters. Connect instantly with those who need your help.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="register.html" class="btn btn-primary">
+            <span class="btn-text">Become a Donor</span>
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+            <span class="btn-glow"></span>
+          </a>
+
+          <a href="dashboard.html" class="btn btn-secondary">
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </span>
+            <span class="btn-text">Find Donors</span>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="5000">0</span>
+              <span class="stat-label">Active Donors</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">❤️</div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="12000">0</span>
+              <span class="stat-label">Lives Saved</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏥</div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="150">0</span>
+              <span class="stat-label">Partner Hospitals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-circle circle-1"></div>
+        <div class="visual-circle circle-2"></div>
+        <div class="visual-circle circle-3"></div>
+        <div class="hero-illustration">
+          <svg viewBox="0 0 400 400" class="illustration-svg">
+            <defs>
+              <linearGradient id="bloodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="10" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Central blood drop -->
+            <g class="blood-drop-large">
+              <path
+                d="M200 80 C200 80, 150 130, 150 180 C150 220, 175 250, 200 250 C225 250, 250 220, 250 180 C250 130, 200 80, 200 80 Z"
+                fill="url(#bloodGradient)" filter="url(#glow)" />
+              <circle cx="200" cy="170" r="8" fill="white" opacity="0.3" />
+            </g>
+
+            <!-- Orbiting elements -->
+            <g class="orbit-1">
+              <circle cx="280" cy="150" r="30" fill="#fca5a5" opacity="0.6" />
+              <path
+                d="M280 135 C280 135, 273 143, 273 150 C273 155, 276 160, 280 160 C284 160, 287 155, 287 150 C287 143, 280 135, 280 135 Z"
+                fill="#dc2626" />
+            </g>
+
+            <g class="orbit-2">
+              <circle cx="120" cy="200" r="25" fill="#fecaca" opacity="0.6" />
+              <path
+                d="M120 188 C120 188, 115 194, 115 200 C115 204, 117 208, 120 208 C123 208, 125 204, 125 200 C125 194, 120 188, 120 188 Z"
+                fill="#dc2626" />
+            </g>
+
+            <g class="orbit-3">
+              <circle cx="300" cy="250" r="20" fill="#fee2e2" opacity="0.6" />
+              <path
+                d="M300 240 C300 240, 296 245, 296 250 C296 253, 298 256, 300 256 C302 256, 304 253, 304 250 C304 245, 300 240, 300 240 Z"
+                fill="#dc2626" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <span class="section-badge">Why Choose Us</span>
+        <h2 class="section-title">Powerful Features for Life-Saving Connections</h2>
+        <p class="section-subtitle">Experience seamless blood donation management with cutting-edge technology</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="feature-title">Instant Matching</h3>
+          <p class="feature-description">Advanced algorithm matches donors with recipients in seconds based on blood
+            type, location, and availability</p>
+          <div class="feature-arrow">→</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Real-time Updates</h3>
+          <p class="feature-description">Get instant notifications for urgent blood requests and availability updates
+            through SMS and push notifications</p>
+          <div class="feature-arrow">→</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 class="feature-title">Hospital Network</h3>
+          <p class="feature-description">Connected with 150+ verified hospitals and blood banks across the region for
+            reliable service</p>
+          <div class="feature-arrow">→</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Secure & Private</h3>
+          <p class="feature-description">Your data is encrypted and protected. We prioritize your privacy with
+            enterprise-grade security</p>
+          <div class="feature-arrow">→</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3 class="feature-title">Blood Inventory</h3>
+          <p class="feature-description">Real-time tracking of blood stock levels across all partner hospitals for
+            efficient resource management</p>
+          <div class="feature-arrow">→</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Community Driven</h3>
+          <p class="feature-description">Join a vibrant community of donors and build connections that save lives
+            together</p>
+          <div class="feature-arrow">→</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section" id="impact">
+      <div class="impact-content">
+        <div class="impact-visual">
+          <div class="impact-circle">
+            <svg viewBox="0 0 200 200" class="circular-text">
+              <defs>
+                <path id="circle" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+              </defs>
+              <text font-size="14" fill="#dc2626" font-weight="600">
+                <textPath xlink:href="#circle">
+                  SAVE LIVES • DONATE BLOOD • MAKE IMPACT •
+                </textPath>
+              </text>
+            </svg>
+            <div class="impact-number">12K+</div>
+          </div>
+        </div>
+
+        <div class="impact-text">
+          <span class="section-badge">Our Impact</span>
+          <h2 class="impact-title">Making a Real Difference Every Day</h2>
+          <p class="impact-description">
+            Through RakhtSetu, we've connected thousands of donors with those in critical need.
+            Our platform has facilitated life-saving transfusions across the region, creating a
+            network of hope and humanity.
+          </p>
+
+          <div class="impact-stats-grid">
+            <div class="impact-stat">
+              <div class="impact-stat-icon">🎯</div>
+              <div class="impact-stat-info">
+                <h4>98%</h4>
+                <p>Success Rate</p>
+              </div>
+            </div>
+            <div class="impact-stat">
+              <div class="impact-stat-icon">⚡</div>
+              <div class="impact-stat-info">
+                <h4>&lt;30min</h4>
+                <p>Avg Response Time</p>
+              </div>
+            </div>
+            <div class="impact-stat">
+              <div class="impact-stat-icon">🌟</div>
+              <div class="impact-stat-info">
+                <h4>24/7</h4>
+                <p>Always Available</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="register.html" class="btn btn-primary">
+            <span class="btn-text">Join the Movement</span>
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+            <span class="btn-glow"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-card">
+        <div class="cta-bg-pattern"></div>
+        <h2 class="cta-title">Ready to Save Lives?</h2>
+        <p class="cta-description">Join thousands of donors making a difference every day</p>
+        <div class="cta-buttons">
+          <a href="register.html" class="btn btn-light">
+            <span class="btn-text">Register Now</span>
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+          <a href="dashboard.html" class="btn btn-outline-light">
+            <span class="btn-text">View Dashboard</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 20 C50 20, 35 35, 35 50 C35 62, 42 70, 50 70 C58 70, 65 62, 65 50 C65 35, 50 20, 50 20 Z"
+              fill="#dc2626" />
+          </svg>
+        </div>
+        <h3>RakhtSetu</h3>
+        <p>Connecting lives through blood donation</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="#about">About Us</a>
+          <a href="#features">Features</a>
+          <a href="register.html">Register</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 RakhtSetu. by Siddharth Kumar. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">📷</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================
+// INTRO VIDEO FUNCTIONALITY
+// ============================================
+const introOverlay = document.getElementById('introVideoOverlay');
+const introVideo = document.getElementById('introVideo');
+const skipButton = document.getElementById('skipIntro');
+
+// Prevent scrolling during intro
+document.body.style.overflow = 'hidden';
+
+// Function to end intro with smooth transition
+function endIntro() {
+  // Add fade-out class for smooth transition
+  introOverlay.classList.add('fade-out');
+  
+  // Remove overlay and restore scrolling after transition completes
+  setTimeout(() => {
+    introOverlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }, 500); // 500ms = 0.5s (faster transition)
+}
+
+// When video ends naturally
+introVideo.addEventListener('ended', endIntro);
+
+// When user clicks skip button
+skipButton.addEventListener('click', endIntro);
+
+// Error handling: If video fails to load
+introVideo.addEventListener('error', () => {
+  console.error('Video failed to load');
+  endIntro();
+});
+
+// Fallback: Auto-skip after 8 seconds
+setTimeout(() => {
+  if (introOverlay.style.display !== 'none') {
+    endIntro();
+  }
+}, 8000);
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Counter animation
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, 16);
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+
+          // Animate counters when they come into view
+          if (entry.target.classList.contains('stat-number')) {
+            animateCounter(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    document.querySelectorAll('.stat-number, .feature-card, .impact-stat').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      lastScroll = currentScroll;
+    });
+  </script>
+  
+</body>
+
+</html>

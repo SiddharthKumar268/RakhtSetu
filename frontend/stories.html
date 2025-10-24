@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Stories - BloodConnect</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="shortcut icon" href="../assets/1.png" type="image/x-icon">
+  <style>
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .story-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: 25px;
+      border: 2px solid rgba(220, 38, 38, 0.1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      animation: fadeInUp 0.6s ease backwards;
+    }
+
+    .story-card:nth-child(1) { animation-delay: 0.1s; }
+    .story-card:nth-child(2) { animation-delay: 0.2s; }
+    .story-card:nth-child(3) { animation-delay: 0.3s; }
+    .story-card:nth-child(4) { animation-delay: 0.4s; }
+    .story-card:nth-child(5) { animation-delay: 0.5s; }
+    .story-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .story-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--blood-red);
+    }
+
+    .story-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .story-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+      flex-shrink: 0;
+    }
+
+    .story-author {
+      flex: 1;
+    }
+
+    .story-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+
+    .story-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .story-location {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .story-date {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .story-content {
+      margin-bottom: 25px;
+    }
+
+    .story-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .story-quote {
+      background: rgba(220, 38, 38, 0.05);
+      border-left: 4px solid var(--blood-red);
+      padding: 20px;
+      border-radius: 12px;
+      font-style: italic;
+      color: var(--dark);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
+    .story-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 2px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .story-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .story-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .story-stat-icon {
+      font-size: 1.2rem;
+    }
+
+    .story-badge {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+      color: white;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 60px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      margin-top: 60px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .stories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-text">💉 RakhtSetu</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="quiz.html" class="nav-link">Quiz</a>
+        <a href="partner.html" class="nav-link">Partner</a>
+        <a href="#donate" class="nav-btn">Donate Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-badge">❤️ Real Stories, Real Impact</div>
+      <h1 class="page-title">Donor Stories</h1>
+      <p class="page-subtitle">Read inspiring testimonials from donors and recipients who have used our platform to save lives</p>
+    </div>
+
+    <div class="stories-grid">
+      <!-- Story 1 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">RP</div>
+          <div class="story-author">
+            <h3 class="story-name">Rajesh Patel</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Mumbai</span>
+              <span>•</span>
+              <span class="story-date">⏰ 2 weeks ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            I've been donating blood for 5 years now, but BloodConnect made it so much easier! I received an urgent notification about a child in need at a nearby hospital. Within 30 minutes, I was there, and I could see the relief on the family's face.
+          </p>
+          <div class="story-quote">
+            "The app connected me directly with someone who needed my blood type. It felt incredible to know I made a real difference."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🩸</span>
+              <span>42 Donations</span>
+            </span>
+            <span class="story-stat">
+              <span class="story-stat-icon">💚</span>
+              <span>168 Lives</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            O+ Donor
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">SK</div>
+          <div class="story-author">
+            <h3 class="story-name">Sneha Kapoor</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Pune</span>
+              <span>•</span>
+              <span class="story-date">⏰ 1 month ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            My mother needed an urgent transfusion during her surgery. Traditional blood banks had a waiting list, but through BloodConnect, we found a donor in less than an hour. The donor was verified, and the entire process was seamless.
+          </p>
+          <div class="story-quote">
+            "This platform didn't just help us find blood – it connected us with an angel who saved my mother's life."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🙏</span>
+              <span>Recipient</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            AB+ Need
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">VR</div>
+          <div class="story-author">
+            <h3 class="story-name">Vikram Reddy</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Hyderabad</span>
+              <span>•</span>
+              <span class="story-date">⏰ 3 weeks ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            As someone with O- blood (universal donor), I always wanted to help but never knew when or where I was needed. BloodConnect sends me notifications when there's an emergency. I've donated 30 times through this platform!
+          </p>
+          <div class="story-quote">
+            "Being a universal donor used to feel like a responsibility. Now it feels like a superpower, thanks to this platform."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🩸</span>
+              <span>30 Donations</span>
+            </span>
+            <span class="story-stat">
+              <span class="story-stat-icon">💚</span>
+              <span>120 Lives</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            O- Universal ⭐
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">PK</div>
+          <div class="story-author">
+            <h3 class="story-name">Priya Kumar</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Bangalore</span>
+              <span>•</span>
+              <span class="story-date">⏰ 5 days ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            I was scared to donate blood for the first time. The BloodConnect team was so supportive – they answered all my questions and even sent me preparation tips. The experience was smooth, and I felt like a hero afterward!
+          </p>
+          <div class="story-quote">
+            "From a nervous first-timer to a regular donor – BloodConnect gave me the confidence to save lives."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🩸</span>
+              <span>6 Donations</span>
+            </span>
+            <span class="story-stat">
+              <span class="story-stat-icon">🌟</span>
+              <span>New Donor</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            A+ Donor
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">AS</div>
+          <div class="story-author">
+            <h3 class="story-name">Amit Singh</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Delhi</span>
+              <span>•</span>
+              <span class="story-date">⏰ 2 months ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            During a major accident in my area, BloodConnect sent an emergency broadcast. Over 50 donors showed up within hours! The coordination was amazing, and we were able to help multiple victims that day.
+          </p>
+          <div class="story-quote">
+            "I witnessed the power of community that day. BloodConnect turned strangers into lifesavers in minutes."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🩸</span>
+              <span>35 Donations</span>
+            </span>
+            <span class="story-stat">
+              <span class="story-stat-icon">💚</span>
+              <span>140 Lives</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            B+ Donor
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 6 -->
+      <div class="story-card">
+        <div class="story-header">
+          <div class="story-avatar">MN</div>
+          <div class="story-author">
+            <h3 class="story-name">Meera Nair</h3>
+            <div class="story-meta">
+              <span class="story-location">📍 Kochi</span>
+              <span>•</span>
+              <span class="story-date">⏰ 1 week ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <p class="story-text">
+            My husband was diagnosed with thalassemia and needs regular transfusions. BloodConnect's reminder system and donor network have been a blessing. We no longer panic about finding donors every month.
+          </p>
+          <div class="story-quote">
+            "For chronic patients like my husband, BloodConnect isn't just an app – it's our lifeline."
+          </div>
+        </div>
+        <div class="story-footer">
+          <div class="story-stats">
+            <span class="story-stat">
+              <span class="story-stat-icon">🙏</span>
+              <span>Family Member</span>
+            </span>
+          </div>
+          <div class="story-badge">
+            A- Need
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Want to Share Your Story?</h2>
+      <p>Your experience could inspire others to become donors and save lives. Share your journey with us!</p>
+      <a href="#share-story" class="btn btn-primary">Share Your Story</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>💉 BloodConnect</h3>
+        <p>Connecting donors with those in need, one drop at a time. Join our mission to save lives through safe and efficient blood donation.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="stories.html">Stories</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="partner.html">Partner With Us</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="#about">About Blood Donation</a>
+          <a href="#faq">FAQs</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BloodConnect. All rights reserved. Saving lives together.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

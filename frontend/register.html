@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Donor - RakhtSetu</title>
+  <link rel="stylesheet" href="register.css">
+  <link rel="icon" href="../assets/blood-donation_2867211.png" type="image/x-icon">
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-gradient">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+
+      <div class="header-content">
+        <div class="logo-wrapper">
+          <div class="logo-bg"></div>
+          <div class="logo">
+            <svg viewBox="0 0 100 100" class="blood-icon">
+              <defs>
+                <linearGradient id="bloodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <path d="M50 20 C50 20, 35 35, 35 50 C35 62, 42 70, 50 70 C58 70, 65 62, 65 50 C65 35, 50 20, 50 20 Z" fill="url(#bloodGrad)"/>
+              <circle cx="50" cy="45" r="3" fill="white" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="header-text">
+          <h1 class="header-title">
+            <span class="title-small">Become a</span>
+            <span class="title-large">Life Saver</span>
+          </h1>
+          <p class="header-subtitle">Join thousands of heroes making a difference</p>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Form Section -->
+    <div class="form-container">
+      <div class="form-card">
+        <div class="form-header">
+          <h2 class="form-title">Donor Registration</h2>
+          <p class="form-description">Fill in your details to register as a blood donor</p>
+        </div>
+
+        <form id="donorForm" class="registration-form">
+          <!-- Name Field -->
+          <div class="form-group">
+            <label for="name" class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>Full Name</span>
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="name" placeholder="Enter your full name" required>
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group">
+            <label for="email" class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email Address</span>
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="email" id="email" placeholder="your.email@example.com" required>
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Phone Field -->
+          <div class="form-group">
+            <label for="phone" class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>Phone Number</span>
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="tel" id="phone" placeholder="+46 123 456 789" required>
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Blood Group Field -->
+          <div class="form-group">
+            <label for="bloodGroup" class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C12 2 7 7 7 12c0 2.8 2.2 5 5 5s5-2.2 5-5c0-5-5-10-5-10z"/>
+              </svg>
+              <span>Blood Group</span>
+              <span class="required">*</span>
+            </label>
+            <div class="select-wrapper">
+              <select id="bloodGroup" required>
+                <option value="">Select your blood group</option>
+                <option value="A+">A+ (A Positive)</option>
+                <option value="A-">A- (A Negative)</option>
+                <option value="B+">B+ (B Positive)</option>
+                <option value="B-">B- (B Negative)</option>
+                <option value="AB+">AB+ (AB Positive)</option>
+                <option value="AB-">AB- (AB Negative)</option>
+                <option value="O+">O+ (O Positive)</option>
+                <option value="O-">O- (O Negative)</option>
+              </select>
+              <div class="select-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- City Field -->
+          <div class="form-group">
+            <label for="city" class="form-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>City</span>
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="city" placeholder="Enter your city" required>
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Terms Checkbox -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" required>
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">I agree to the <a href="#">terms and conditions</a> and confirm that my information is accurate</span>
+            </label>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="form-actions">
+            <a href="index.html" class="btn btn-secondary">
+              <span class="btn-text">Cancel</span>
+            </a>
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-text">Register as Donor</span>
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 11 12 14 22 4"></polyline>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+              </span>
+              <span class="btn-shimmer"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="info-section">
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3>Why Register?</h3>
+          <p>Be part of a life-saving network that connects donors with those in urgent need</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Safe & Secure</h3>
+          <p>Your data is encrypted and protected with enterprise-grade security</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </div>
+          <h3>Instant Notifications</h3>
+          <p>Get alerts when someone needs your blood type in your area</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success/Error Message Modal -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-icon" id="modalIcon"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalMessage"></p>
+      <button class="modal-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner">
+      <svg viewBox="0 0 100 100">
+        <path d="M50 20 C50 20, 35 35, 35 50 C35 62, 42 70, 50 70 C58 70, 65 62, 65 50 C65 35, 50 20, 50 20 Z" fill="#dc2626"/>
+      </svg>
+    </div>
+    <p class="loading-text">Registering...</p>
+  </div>
+
+  <script>
+    const API_BASE_URL = 'https://j0l3z4p0nl.execute-api.eu-north-1.amazonaws.com/prod';
+    
+    const form = document.getElementById('donorForm');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const modal = document.getElementById('messageModal');
+    const progressFill = document.querySelector('.progress-fill');
+
+    // Update progress bar based on form completion
+    function updateProgress() {
+      const inputs = form.querySelectorAll('input:not([type="checkbox"]), select');
+      const filled = Array.from(inputs).filter(input => input.value.trim() !== '').length;
+      const percentage = (filled / inputs.length) * 100;
+      progressFill.style.width = percentage + '%';
+    }
+
+    // Add listeners to all form inputs
+    form.querySelectorAll('input, select').forEach(input => {
+      input.addEventListener('input', updateProgress);
+      input.addEventListener('change', updateProgress);
+    });
+
+    // Show loading
+    function showLoading() {
+      loadingOverlay.classList.add('active');
+    }
+
+    // Hide loading
+    function hideLoading() {
+      loadingOverlay.classList.remove('active');
+    }
+
+    // Show modal
+    function showModal(type, title, message) {
+      const modalIcon = document.getElementById('modalIcon');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+
+      if (type === 'success') {
+        modalIcon.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        `;
+        modalIcon.className = 'modal-icon success';
+      } else {
+        modalIcon.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        `;
+        modalIcon.className = 'modal-icon error';
+      }
+
+      modalTitle.textContent = title;
+      modalMessage.textContent = message;
+      modal.classList.add('active');
+    }
+
+    // Close modal
+    function closeModal() {
+      modal.classList.remove('active');
+      if (document.getElementById('modalIcon').classList.contains('success')) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const donor = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        bloodGroup: document.getElementById('bloodGroup').value,
+        city: document.getElementById('city').value
+      };
+
+      showLoading();
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/registerDonor`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(donor)
+        });
+        
+        const data = await response.json();
+        
+        setTimeout(() => {
+          hideLoading();
+          
+          if (response.ok) {
+            showModal('success', 'Registration Successful!', 
+              `Thank you ${donor.name}! You've been registered as a blood donor. We'll notify you when someone needs your help.`);
+            form.reset();
+            updateProgress();
+          } else {
+            throw new Error(data.error || 'Registration failed');
+          }
+        }, 1000);
+      } catch (error) {
+        setTimeout(() => {
+          hideLoading();
+          showModal('error', 'Registration Failed', 
+            error.message || 'Unable to register. Please try again later.');
+        }, 1000);
+      }
+    });
+
+    // Input animations
+    document.querySelectorAll('.input-wrapper input, .select-wrapper select').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+      });
+      
+      input.addEventListener('blur', function() {
+        if (!this.value) {
+          this.parentElement.classList.remove('focused');
+        }
+      });
+    });
+
+    // Initialize progress
+    updateProgress();
+  </script>
+</body>
+</html>

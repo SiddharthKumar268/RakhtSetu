@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Availability - RakhtSetu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="../assets/receiver.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+          --blood-red: #dc2626;
+          --blood-dark: #991b1b;
+          --blood-light: #fca5a5;
+          --blood-lighter: #fecaca;
+          --cream: #fef2f2;
+          --white: #ffffff;
+          --dark: #1f2937;
+          --gray: #6b7280;
+          --light-gray: #f3f4f6;
+          --success: #10b981;
+          --error: #ef4444;
+          --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.08);
+          --shadow-md: 0 8px 24px rgba(220, 38, 38, 0.12);
+          --shadow-lg: 0 16px 48px rgba(220, 38, 38, 0.18);
+          --shadow-xl: 0 24px 64px rgba(220, 38, 38, 0.24);
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Poppins', sans-serif;
+          background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 50%, #fecaca 100%);
+          min-height: 100vh;
+          color: var(--dark);
+          line-height: 1.6;
+          overflow-x: hidden;
+          position: relative;
+        }
+
+        .bg-gradient {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .gradient-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          opacity: 0.3;
+          animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+          width: 500px;
+          height: 500px;
+          background: radial-gradient(circle, var(--blood-light), transparent);
+          top: -10%;
+          right: -10%;
+          animation-delay: 0s;
+        }
+
+        .orb-2 {
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(circle, var(--blood-lighter), transparent);
+          bottom: -10%;
+          left: -10%;
+          animation-delay: 5s;
+        }
+
+        .orb-3 {
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, var(--blood-light), transparent);
+          top: 50%;
+          left: 50%;
+          animation-delay: 10s;
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -30px) scale(1.1); }
+          66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        .particles {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: var(--blood-red);
+          border-radius: 50%;
+          opacity: 0;
+          animation: particleRise 15s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 30%; animation-delay: 3s; }
+        .particle:nth-child(3) { left: 50%; animation-delay: 6s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 9s; }
+        .particle:nth-child(5) { left: 85%; animation-delay: 12s; }
+        .particle:nth-child(6) { left: 95%; animation-delay: 2s; }
+
+        @keyframes particleRise {
+          0% { bottom: -10%; opacity: 0; transform: translateX(0); }
+          10% { opacity: 0.5; }
+          90% { opacity: 0.3; }
+          100% { bottom: 110%; opacity: 0; transform: translateX(100px); }
+        }
+
+        .container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 40px 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .header {
+          text-align: center;
+          margin-bottom: 50px;
+          animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--blood-red);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          margin-bottom: 30px;
+          padding: 10px 20px;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(10px);
+        }
+
+        .back-link:hover {
+          background: white;
+          box-shadow: var(--shadow-md);
+          transform: translateX(-5px);
+        }
+
+        .header-content {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+          backdrop-filter: blur(20px);
+          border-radius: 30px;
+          padding: 50px;
+          box-shadow: var(--shadow-lg);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .header-content::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.05), transparent);
+          animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+          0% { left: -100%; }
+          100% { left: 100%; }
+        }
+
+        .logo-wrapper {
+          position: relative;
+          display: inline-block;
+          margin-bottom: 30px;
+        }
+
+        .logo-bg {
+          position: absolute;
+          inset: -10px;
+          background: linear-gradient(135deg, var(--blood-lighter), var(--blood-light));
+          border-radius: 30px;
+          filter: blur(20px);
+          opacity: 0.5;
+          animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 0.5; }
+          50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        .logo {
+          width: 100px;
+          height: 100px;
+          background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+          border-radius: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: var(--shadow-xl);
+          position: relative;
+          z-index: 2;
+          animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+
+        .blood-icon {
+          font-size: 50px;
+          color: white;
+        }
+
+        .header-text {
+          margin-bottom: 30px;
+        }
+
+        .header-title {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .title-small {
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: var(--gray);
+        }
+
+        .title-large {
+          font-size: 3.5rem;
+          font-weight: 900;
+          background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          letter-spacing: -2px;
+        }
+
+        .header-subtitle {
+          font-size: 1.1rem;
+          color: var(--gray);
+          margin-top: 15px;
+        }
+
+        .search-section {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+          backdrop-filter: blur(20px);
+          border-radius: 30px;
+          padding: 50px;
+          box-shadow: var(--shadow-lg);
+          margin-bottom: 40px;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(50px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+          margin-bottom: 40px;
+          padding-bottom: 30px;
+          border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .section-title {
+          font-size: 2rem;
+          font-weight: 800;
+          color: var(--dark);
+          margin-bottom: 10px;
+        }
+
+        .section-description {
+          font-size: 1rem;
+          color: var(--gray);
+        }
+
+        .search-form {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+          margin-bottom: 30px;
+        }
+
+        .form-group {
+          position: relative;
+        }
+
+        .form-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--dark);
+          margin-bottom: 12px;
+        }
+
+        .form-label i {
+          color: var(--blood-red);
+          font-size: 16px;
+        }
+
+        .select-wrapper,
+        .input-wrapper {
+          position: relative;
+        }
+
+        select,
+        input[type="text"] {
+          width: 100%;
+          padding: 16px 20px;
+          font-size: 1rem;
+          font-family: 'Poppins', sans-serif;
+          color: var(--dark);
+          background: white;
+          border: 2px solid transparent;
+          border-radius: 15px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          outline: none;
+          position: relative;
+          z-index: 2;
+          appearance: none;
+          cursor: pointer;
+        }
+
+        select {
+          padding-right: 50px;
+        }
+
+        .input-border {
+          position: absolute;
+          inset: 0;
+          border: 2px solid rgba(220, 38, 38, 0.1);
+          border-radius: 15px;
+          pointer-events: none;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .select-wrapper:hover .input-border,
+        .input-wrapper:hover .input-border {
+          border-color: var(--blood-light);
+          box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+        }
+
+        select:focus + .input-border,
+        input:focus + .input-border {
+          border-color: var(--blood-red);
+          box-shadow: 0 8px 24px rgba(220, 38, 38, 0.15), 0 0 0 4px rgba(220, 38, 38, 0.1);
+        }
+
+        select:focus,
+        input:focus {
+          transform: translateY(-2px);
+        }
+
+        .select-arrow {
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          z-index: 3;
+          color: var(--blood-red);
+          font-size: 18px;
+        }
+
+        .btn {
+          width: 100%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 18px 32px;
+          font-size: 1.1rem;
+          font-weight: 700;
+          font-family: 'Poppins', sans-serif;
+          text-decoration: none;
+          border: none;
+          border-radius: 15px;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+          color: white;
+          box-shadow: var(--shadow-md);
+        }
+
+        .btn:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-xl);
+        }
+
+        .btn:active {
+          transform: translateY(-2px);
+        }
+
+        .btn-shimmer {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          transition: left 0.6s ease;
+        }
+
+        .btn:hover .btn-shimmer {
+          left: 100%;
+        }
+
+        .info-box {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+          padding: 25px;
+          border-radius: 20px;
+          margin-top: 30px;
+          border-left: 4px solid #3b82f6;
+          border: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .info-box h3 {
+          color: #2563eb;
+          margin-bottom: 15px;
+          font-weight: 700;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .info-box p {
+          color: var(--gray);
+          line-height: 1.8;
+          margin-bottom: 10px;
+        }
+
+        .info-box ul {
+          margin-left: 20px;
+          margin-top: 15px;
+          color: var(--gray);
+          line-height: 1.8;
+        }
+
+        .loading-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(254, 242, 242, 0.95);
+          backdrop-filter: blur(10px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 9998;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay.active {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        .loading-spinner {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 20px;
+          animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .loading-spinner i {
+          font-size: 80px;
+          color: var(--blood-red);
+          filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.3));
+        }
+
+        .loading-text {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: var(--blood-red);
+        }
+
+        .results-section {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+          backdrop-filter: blur(20px);
+          padding: 50px;
+          border-radius: 30px;
+          box-shadow: var(--shadow-lg);
+          display: none;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          animation: fadeInUp 0.5s ease;
+        }
+
+        .results-section.show {
+          display: block;
+        }
+
+        .results-header {
+          margin-bottom: 40px;
+          padding-bottom: 30px;
+          border-bottom: 2px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .results-title {
+          font-size: 2rem;
+          font-weight: 800;
+          color: var(--dark);
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .blood-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 25px;
+        }
+
+        .blood-card {
+          background: white;
+          padding: 35px;
+          border-radius: 25px;
+          text-align: center;
+          border: 2px solid rgba(220, 38, 38, 0.1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+          box-shadow: var(--shadow-sm);
+        }
+
+        .blood-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, transparent, rgba(220, 38, 38, 0.03));
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .blood-card:hover::before {
+          opacity: 1;
+        }
+
+        .blood-card:hover {
+          transform: translateY(-10px);
+          box-shadow: var(--shadow-xl);
+          border-color: var(--blood-red);
+        }
+
+        .blood-type {
+          font-size: 3.5em;
+          font-weight: 800;
+          color: var(--blood-red);
+          margin-bottom: 15px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .blood-count {
+          font-size: 3em;
+          font-weight: 800;
+          margin-bottom: 10px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .blood-label {
+          color: var(--gray);
+          font-size: 1em;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 600;
+          position: relative;
+          z-index: 1;
+        }
+
+        .status-badge {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          padding: 8px 15px;
+          border-radius: 20px;
+          font-size: 0.75em;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          z-index: 2;
+        }
+
+        .blood-card.available {
+          border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .blood-card.available .blood-count {
+          color: #10b981;
+        }
+
+        .blood-card.available .status-badge {
+          background: rgba(34, 197, 94, 0.2);
+          color: #10b981;
+          border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .blood-card.low {
+          border-color: rgba(251, 146, 60, 0.3);
+        }
+
+        .blood-card.low .blood-count {
+          color: #fb923c;
+        }
+
+        .blood-card.low .status-badge {
+          background: rgba(251, 146, 60, 0.2);
+          color: #fb923c;
+          border: 1px solid rgba(251, 146, 60, 0.3);
+        }
+
+        .blood-card.unavailable {
+          border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .blood-card.unavailable .blood-count {
+          color: #ef4444;
+        }
+
+        .blood-card.unavailable .status-badge {
+          background: rgba(239, 68, 68, 0.2);
+          color: #ef4444;
+          border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .error-message {
+          background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.1));
+          color: var(--error);
+          padding: 20px 25px;
+          border-radius: 15px;
+          margin-bottom: 30px;
+          border-left: 4px solid var(--error);
+          display: none;
+          border: 2px solid rgba(239, 68, 68, 0.2);
+          font-weight: 500;
+        }
+
+        .error-message.show {
+          display: block;
+          animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-10px); }
+          75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+          .container {
+            padding: 20px 15px;
+          }
+          
+          .header-content,
+          .search-section,
+          .results-section {
+            padding: 30px 25px;
+          }
+          
+          .title-large {
+            font-size: 2.5rem;
+          }
+          
+          .search-form {
+            grid-template-columns: 1fr;
+          }
+          
+          .blood-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          }
+          
+          .blood-card {
+            padding: 25px;
+          }
+          
+          .blood-type {
+            font-size: 2.5em;
+          }
+          
+          .blood-count {
+            font-size: 2em;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-wrapper">
+                    <div class="logo-bg"></div>
+                    <div class="logo">
+                        <i class="fas fa-tint blood-icon"></i>
+                    </div>
+                </div>
+                <div class="header-text">
+                    <div class="header-title">
+                        <span class="title-small">e-Raktkosh Integration</span>
+                        <span class="title-large">Blood Bank Availability</span>
+                    </div>
+                    <p class="header-subtitle">Real-time Blood Stock Information Across India</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="section-header">
+                <h2 class="section-title">🔍 Search Blood Availability</h2>
+                <p class="section-description">Find available blood units in government blood banks</p>
+            </div>
+            
+            <form class="search-form" id="searchForm">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-map-marker-alt"></i>
+                        State
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="stateSelect">
+                            <option value="">-- Select State --</option>
+                        </select>
+                        <div class="input-border"></div>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-city"></i>
+                        District
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="districtSelect" disabled>
+                            <option value="">-- Select District --</option>
+                        </select>
+                        <div class="input-border"></div>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-tint"></i>
+                        Blood Group (Optional)
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="bloodGroupSelect">
+                            <option value="">All Blood Groups</option>
+                            <option value="1">A+</option>
+                            <option value="2">A-</option>
+                            <option value="3">B+</option>
+                            <option value="4">B-</option>
+                            <option value="5">AB+</option>
+                            <option value="6">AB-</option>
+                            <option value="7">O+</option>
+                            <option value="8">O-</option>
+                        </select>
+                        <div class="input-border"></div>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+            </form>
+
+            <button class="btn" onclick="searchBlood()">
+                <i class="fas fa-search"></i>
+                Search Blood Banks
+                <span class="btn-shimmer"></span>
+            </button>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="info-box" id="infoBox">
+                <h3><i class="fas fa-spinner fa-spin"></i> Loading API Connection...</h3>
+                <p>Connecting to e-Raktkosh through AWS Lambda...</p>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 class="results-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Blood Availability Results
+                </h2>
+            </div>
+            <div class="blood-grid" id="bloodGrid"></div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-tint"></i>
+        </div>
+        <p class="loading-text">Fetching blood bank data...</p>
+    </div>
+
+    <script>
+        const API_BASE = 'https://j0l3z4p0nl.execute-api.eu-north-1.amazonaws.com/prod/eraktkosh';
+        
+        const bloodGroupMap = {
+            '1': 'A+', '2': 'A-', '3': 'B+', '4': 'B-',
+            '5': 'AB+', '6': 'AB-', '7': 'O+', '8': 'O-'
+        };
+
+        const statesData = [
+            { id: '1', name: 'Andaman and Nicobar Islands' }, { id: '2', name: 'Andhra Pradesh' },
+            { id: '3', name: 'Arunachal Pradesh' }, { id: '4', name: 'Assam' },
+            { id: '5', name: 'Bihar' }, { id: '6', name: 'Chandigarh' },
+            { id: '7', name: 'Chhattisgarh' }, { id: '8', name: 'Dadra and Nagar Haveli' },
+            { id: '9', name: 'Daman and Diu' }, { id: '10', name: 'Delhi' },
+            { id: '11', name: 'Goa' }, { id: '12', name: 'Gujarat' },
+            { id: '13', name: 'Haryana' }, { id: '14', name: 'Himachal Pradesh' },
+            { id: '15', name: 'Jammu and Kashmir' }, { id: '16', name: 'Jharkhand' },
+            { id: '17', name: 'Karnataka' }, { id: '18', name: 'Kerala' },
+            { id: '19', name: 'Ladakh' }, { id: '20', name: 'Lakshadweep' },
+            { id: '21', name: 'Madhya Pradesh' }, { id: '22', name: 'Maharashtra' },
+            { id: '23', name: 'Manipur' }, { id: '24', name: 'Meghalaya' },
+            { id: '25', name: 'Mizoram' }, { id: '26', name: 'Nagaland' },
+            { id: '27', name: 'Odisha' }, { id: '28', name: 'Puducherry' },
+            { id: '29', name: 'Punjab' }, { id: '30', name: 'Rajasthan' },
+            { id: '31', name: 'Sikkim' }, { id: '32', name: 'Tamil Nadu' },
+            { id: '33', name: 'Telangana' }, { id: '34', name: 'Tripura' },
+            { id: '35', name: 'Uttar Pradesh' }, { id: '36', name: 'Uttarakhand' },
+            { id: '37', name: 'West Bengal' }
+        ];
+
+        const districtsData = {
+            '10': ['Central Delhi', 'East Delhi', 'New Delhi', 'North Delhi', 'South Delhi'],
+            '22': ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Thane'],
+            '17': ['Bangalore Urban', 'Mysore', 'Mangalore', 'Hubli'],
+            '32': ['Chennai', 'Coimbatore', 'Madurai', 'Salem'],
+            '12': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot']
+        };
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadStates();
+        });
+
+        async function loadStates() {
+            const stateSelect = document.getElementById('stateSelect');
+            stateSelect.innerHTML = '<option value="">-- Select State --</option>';
+            
+            try {
+                const response = await fetch(`${API_BASE}?reqType=getAllStates`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data && Array.isArray(data)) {
+                        data.forEach(state => {
+                            const option = document.createElement('option');
+                            option.value = state.state_id || state.id;
+                            option.textContent = state.state_name || state.name;
+                            stateSelect.appendChild(option);
+                        });
+                        
+                        updateInfoBox('success');
+                        return;
+                    }
+                }
+                
+                throw new Error('API response invalid');
+                
+            } catch (error) {
+                console.error('Error loading states from API:', error);
+                
+                statesData.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state.id;
+                    option.textContent = state.name;
+                    stateSelect.appendChild(option);
+                });
+                
+                updateInfoBox('fallback');
+            }
+        }
+
+        document.getElementById('stateSelect').addEventListener('change', async function() {
+            const stateId = this.value;
+            const districtSelect = document.getElementById('districtSelect');
+            
+            if (!stateId) {
+                districtSelect.disabled = true;
+                districtSelect.innerHTML = '<option value="">-- Select District --</option>';
+                return;
+            }
+            
+            districtSelect.disabled = false;
+            districtSelect.innerHTML = '<option value="">Loading...</option>';
+            
+            try {
+                const response = await fetch(`${API_BASE}?reqType=getDistrictByState&stateId=${stateId}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    districtSelect.innerHTML = '<option value="">-- Select District --</option>';
+                    
+                    if (data && Array.isArray(data)) {
+                        data.forEach(district => {
+                            const option = document.createElement('option');
+                            option.value = district.district_id || district.id;
+                            option.textContent = district.district_name || district.name;
+                            districtSelect.appendChild(option);
+                        });
+                        return;
+                    }
+                }
+                
+                throw new Error('API failed');
+                
+            } catch (error) {
+                console.error('Error loading districts:', error);
+                
+                districtSelect.innerHTML = '<option value="">-- Select District --</option>';
+                
+                if (districtsData[stateId]) {
+                    districtsData[stateId].forEach((district, index) => {
+                        const option = document.createElement('option');
+                        option.value = index + 1;
+                        option.textContent = district;
+                        districtSelect.appendChild(option);
+                    });
+                } else {
+                    ['District 1', 'District 2', 'District 3'].forEach((district, index) => {
+                        const option = document.createElement('option');
+                        option.value = index + 1;
+                        option.textContent = district;
+                        districtSelect.appendChild(option);
+                    });
+                }
+            }
+        });
+
+        async function searchBlood() {
+            const stateId = document.getElementById('stateSelect').value;
+            const districtId = document.getElementById('districtSelect').value;
+            const bloodGroupId = document.getElementById('bloodGroupSelect').value;
+
+            if (!stateId || !districtId) {
+                showError('Please select both state and district');
+                return;
+            }
+
+            hideError();
+            showLoading();
+            hideResults();
+
+            try {
+                let url = `${API_BASE}?reqType=getStockAvailability&stateId=${stateId}&districtId=${districtId}`;
+                
+                if (bloodGroupId) {
+                    url += `&bloodGroup=${bloodGroupId}`;
+                }
+
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                hideLoading();
+                
+                if (data && Array.isArray(data) && data.length > 0) {
+                    displayResults(data, bloodGroupId);
+                } else {
+                    showError('No blood banks found for the selected location.');
+                }
+            } catch (error) {
+                console.error('Error fetching blood data:', error);
+                hideLoading();
+                showError('Unable to fetch data. Showing sample data.');
+                
+                const sampleData = [
+                    { bloodGroup: 'A+', availableUnits: 150 },
+                    { bloodGroup: 'A-', availableUnits: 45 },
+                    { bloodGroup: 'B+', availableUnits: 120 },
+                    { bloodGroup: 'B-', availableUnits: 30 },
+                    { bloodGroup: 'AB+', availableUnits: 80 },
+                    { bloodGroup: 'AB-', availableUnits: 20 },
+                    { bloodGroup: 'O+', availableUnits: 200 },
+                    { bloodGroup: 'O-', availableUnits: 55 }
+                ];
+                displayResults(sampleData, bloodGroupId);
+            }
+        }
+
+        function displayResults(data, filterGroupId) {
+            const grid = document.getElementById('bloodGrid');
+            grid.innerHTML = '';
+
+            const bloodGroupData = {};
+            
+            data.forEach(item => {
+                const group = item.bloodGroup || item.blood_group || 'Unknown';
+                const units = parseInt(item.availableUnits || item.available_units || 0);
+                
+                if (!bloodGroupData[group]) {
+                    bloodGroupData[group] = 0;
+                }
+                bloodGroupData[group] += units;
+            });
+
+            let groupsToShow = Object.keys(bloodGroupData);
+            if (filterGroupId && bloodGroupMap[filterGroupId]) {
+                const filterGroup = bloodGroupMap[filterGroupId];
+                groupsToShow = groupsToShow.filter(g => g === filterGroup);
+            }
+
+            const sortOrder = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'];
+            groupsToShow.sort((a, b) => sortOrder.indexOf(a) - sortOrder.indexOf(b));
+
+            groupsToShow.forEach((group, index) => {
+                const count = bloodGroupData[group];
+                const card = document.createElement('div');
+                card.className = 'blood-card';
+                
+                let statusClass = '';
+                let statusText = '';
+                
+                if (count > 100) {
+                    statusClass = 'available';
+                    statusText = 'Available';
+                } else if (count > 20) {
+                    statusClass = 'low';
+                    statusText = 'Low Stock';
+                } else {
+                    statusClass = 'unavailable';
+                    statusText = 'Critical';
+                }
+                
+                card.classList.add(statusClass);
+
+                card.innerHTML = `
+                    <div class="status-badge">${statusText}</div>
+                    <div class="blood-type">${group}</div>
+                    <div class="blood-count">${count}</div>
+                    <div class="blood-label">Units Available</div>
+                `;
+
+                setTimeout(() => {
+                    grid.appendChild(card);
+                }, index * 100);
+            });
+
+            showResults();
+        }
+
+        function updateInfoBox(status) {
+            const infoBox = document.getElementById('infoBox');
+            
+            if (status === 'success') {
+                infoBox.innerHTML = `
+                    <h3><i class="fas fa-check-circle"></i> Connected to e-Raktkosh API</h3>
+                    <p><strong>Status:</strong> Successfully connected via AWS Lambda Proxy</p>
+                    <ul>
+                        <li>✅ Real-time data from government blood banks</li>
+                        <li>✅ Secure and legal API integration</li>
+                        <li>✅ No CORS issues - using AWS infrastructure</li>
+                    </ul>
+                `;
+            } else {
+                infoBox.innerHTML = `
+                    <h3><i class="fas fa-info-circle"></i> Demo Mode Active</h3>
+                    <p><strong>Note:</strong> Using fallback data. To enable live data, ensure your AWS Lambda is properly configured.</p>
+                    <ul>
+                        <li>Check CloudWatch logs for Lambda errors</li>
+                        <li>Verify API Gateway routes</li>
+                        <li>Ensure Lambda has internet access</li>
+                    </ul>
+                `;
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function showResults() {
+            document.getElementById('resultsSection').classList.add('show');
+        }
+
+        function hideResults() {
+            document.getElementById('resultsSection').classList.remove('show');
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.innerHTML = `<strong><i class="fas fa-exclamation-triangle"></i> Error:</strong> ${message}`;
+            errorEl.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

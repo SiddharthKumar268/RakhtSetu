@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner With Us - RakhtSetu</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="shortcut icon" href="../assets/3.png" type="image/x-icon">
+  <style>
+    .partner-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .partner-hero-content h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .partner-hero-content p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .partner-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .partner-stat {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 15px;
+      border: 2px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .partner-stat-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .partner-stat-label {
+      font-size: 0.9rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .partner-hero-image {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: var(--shadow-xl);
+      text-align: center;
+    }
+
+    .partner-hero-image svg {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+    }
+
+    .benefits-section {
+      margin-bottom: 80px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .benefit-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      border: 2px solid rgba(220, 38, 38, 0.1);
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.6s ease backwards;
+    }
+
+    .benefit-card:nth-child(1) { animation-delay: 0.1s; }
+    .benefit-card:nth-child(2) { animation-delay: 0.2s; }
+    .benefit-card:nth-child(3) { animation-delay: 0.3s; }
+    .benefit-card:nth-child(4) { animation-delay: 0.4s; }
+    .benefit-card:nth-child(5) { animation-delay: 0.5s; }
+    .benefit-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--blood-red);
+    }
+
+    .benefit-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .benefit-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+
+    .benefit-description {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .partner-types {
+      margin-bottom: 80px;
+    }
+
+    .partner-types-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .partner-type-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 50px;
+      border-radius: 30px;
+      border: 3px solid rgba(220, 38, 38, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partner-type-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+    }
+
+    .partner-type-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--blood-red);
+    }
+
+    .partner-type-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .partner-type-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+
+    .partner-type-description {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .partner-type-features {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .partner-type-features li {
+      padding: 12px 0;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .partner-type-features li:last-child {
+      border-bottom: none;
+    }
+
+    .partner-type-features li::before {
+      content: '✓';
+      color: var(--blood-red);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .form-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 60px;
+      border-radius: 30px;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 80px;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .form-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+
+    .form-header p {
+      font-size: 1.1rem;
+      color: var(--gray);
+    }
+
+    .partner-form {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid rgba(220, 38, 38, 0.1);
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blood-red);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .submit-btn {
+      padding: 18px 50px;
+      background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: var(--shadow-md);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .success-message {
+      display: none;
+      background: rgba(16, 185, 129, 0.1);
+      border: 2px solid #10b981;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .error-message {
+      display: none;
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid #ef4444;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .error-message.show {
+      display: block;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .error-message h3 {
+      color: #ef4444;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .error-message p {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-loading::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success Popup Modal */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-overlay.show {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .popup-modal {
+      background: white;
+      padding: 50px;
+      border-radius: 30px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: popupSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+    }
+
+    @keyframes popupSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .popup-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s backwards;
+    }
+
+    @keyframes bounceIn {
+      from {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .popup-title {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #10b981, #059669);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .popup-message {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .popup-close-btn {
+      padding: 14px 40px;
+      background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .popup-close-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--blood-red);
+      animation: confettiFall 3s ease-out forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 968px) {
+      .partner-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .partner-types-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-section {
+        padding: 40px 30px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-hero-content h2 {
+        font-size: 2rem;
+      }
+
+      .form-section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-text">💉 RakhtSetu</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="quiz.html" class="nav-link">Quiz</a>
+        <a href="partner.html" class="nav-link">Partner</a>
+        <a href="register.html" class="nav-btn">Donate Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-badge">🤝 Join Our Mission</div>
+      <h1 class="page-title">Partner With Us</h1>
+      <p class="page-subtitle">Collaborate with BloodConnect to create a stronger network and save more lives together</p>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="partner-hero">
+      <div class="partner-hero-content">
+        <h2>Transform Lives Together</h2>
+        <p>Join hundreds of hospitals, NGOs, and blood banks across India who are already using BloodConnect to streamline their blood donation processes and reach more donors efficiently.</p>
+        <div class="partner-stats">
+          <div class="partner-stat">
+            <span class="partner-stat-value">250+</span>
+            <span class="partner-stat-label">Partner Hospitals</span>
+          </div>
+          <div class="partner-stat">
+            <span class="partner-stat-value">120+</span>
+            <span class="partner-stat-label">NGO Partners</span>
+          </div>
+          <div class="partner-stat">
+            <span class="partner-stat-value">95%</span>
+            <span class="partner-stat-label">Success Rate</span>
+          </div>
+          <div class="partner-stat">
+            <span class="partner-stat-value">24/7</span>
+            <span class="partner-stat-label">Support Available</span>
+          </div>
+        </div>
+      </div>
+      <div class="partner-hero-image">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Handshake illustration -->
+          <circle cx="200" cy="150" r="120" fill="#fecaca" opacity="0.3"/>
+          <path d="M120 150 Q140 120, 160 140 L180 160 L200 140 Q220 120, 240 140 L260 160" 
+                stroke="#dc2626" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <circle cx="160" cy="140" r="15" fill="#dc2626"/>
+          <circle cx="240" cy="140" r="15" fill="#dc2626"/>
+          <text x="200" y="230" text-anchor="middle" font-size="20" font-weight="700" fill="#dc2626">Partnership</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+      <div class="page-header">
+        <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 15px;">Why Partner With Us?</h2>
+        <p class="page-subtitle">Discover the advantages of joining the BloodConnect network</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <span class="benefit-icon">🎯</span>
+          <h3 class="benefit-title">Direct Donor Access</h3>
+          <p class="benefit-description">Connect directly with thousands of verified donors in your area for immediate blood requirements.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">📊</span>
+          <h3 class="benefit-title">Real-Time Dashboard</h3>
+          <p class="benefit-description">Track inventory, manage requests, and view analytics through our comprehensive partner dashboard.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">⚡</span>
+          <h3 class="benefit-title">Emergency Alerts</h3>
+          <p class="benefit-description">Send urgent notifications to donors in your network for critical blood requirements.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">🔒</span>
+          <h3 class="benefit-title">Secure & Compliant</h3>
+          <p class="benefit-description">HIPAA-compliant platform with end-to-end encryption ensuring data security.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">📱</span>
+          <h3 class="benefit-title">Mobile Integration</h3>
+          <p class="benefit-description">Seamless mobile app integration for on-the-go management and donor communication.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">💰</span>
+          <h3 class="benefit-title">Cost Effective</h3>
+          <p class="benefit-description">Reduce operational costs with automated donor management and efficient coordination.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Types Section -->
+    <section class="partner-types">
+      <div class="page-header">
+        <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 15px;">Who Can Partner?</h2>
+        <p class="page-subtitle">We welcome various healthcare organizations and NGOs to join our mission</p>
+      </div>
+      <div class="partner-types-grid">
+        <div class="partner-type-card">
+          <span class="partner-type-icon">🏥</span>
+          <h3 class="partner-type-title">Hospitals & Clinics</h3>
+          <p class="partner-type-description">Streamline your blood bank operations and ensure timely availability of blood for patients.</p>
+          <ul class="partner-type-features">
+            <li>Inventory management system</li>
+            <li>Emergency donor alerts</li>
+            <li>Patient-donor matching</li>
+            <li>Automated reporting</li>
+            <li>24/7 technical support</li>
+          </ul>
+          <a href="#form" class="btn btn-primary">Partner as Hospital</a>
+        </div>
+        <div class="partner-type-card">
+          <span class="partner-type-icon">❤️</span>
+          <h3 class="partner-type-title">NGOs & Organizations</h3>
+          <p class="partner-type-description">Amplify your impact by organizing blood donation camps and awareness campaigns.</p>
+          <ul class="partner-type-features">
+            <li>Camp management tools</li>
+            <li>Donor recruitment support</li>
+            <li>Campaign analytics</li>
+            <li>Volunteer coordination</li>
+            <li>Marketing materials</li>
+          </ul>
+          <a href="#form" class="btn btn-primary">Partner as NGO</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Form -->
+    <section class="form-section" id="form">
+      <div class="form-header">
+        <h2>Join Our Network</h2>
+        <p>Fill out the form below and our team will get in touch with you within 24 hours</p>
+      </div>
+      <form class="partner-form" id="partnerForm" action="https://formspree.io/f/mnnoajbl" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="orgName">Organization Name *</label>
+            <input type="text" id="orgName" name="organization_name" required placeholder="Enter organization name">
+          </div>
+          <div class="form-group">
+            <label for="orgType">Organization Type *</label>
+            <select id="orgType" name="organization_type" required>
+              <option value="">Select type</option>
+              <option value="hospital">Hospital</option>
+              <option value="clinic">Clinic</option>
+              <option value="blood-bank">Blood Bank</option>
+              <option value="ngo">NGO</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactName">Contact Person *</label>
+            <input type="text" id="contactName" name="contact_person" required placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="designation">Designation *</label>
+            <input type="text" id="designation" name="designation" required placeholder="Your role">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="_replyto" required placeholder="email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Organization Address *</label>
+          <input type="text" id="address" name="address" required placeholder="Full address with city and state">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City *</label>
+            <input type="text" id="city" name="city" required placeholder="City">
+          </div>
+          <div class="form-group">
+            <label for="state">State *</label>
+            <input type="text" id="state" name="state" required placeholder="State">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="website">Website (Optional)</label>
+          <input type="url" id="website" name="website" placeholder="https://www.example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell us about your organization and partnership goals *</label>
+          <textarea id="message" name="message" required placeholder="Share your vision and how you'd like to collaborate..."></textarea>
+        </div>
+
+        <!-- Hidden fields for Formspree -->
+        <input type="hidden" name="_subject" value="New Partnership Request - BloodConnect">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_gotcha" style="display:none">
+
+        <div class="form-submit">
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">Submit Partnership Request</span>
+            <span class="btn-loading" style="display: none;">Submitting...</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Success Popup Modal -->
+    <div class="popup-overlay" id="successPopup">
+      <div class="popup-modal">
+        <div class="popup-icon">🎉</div>
+        <h3 class="popup-title">Successfully Submitted!</h3>
+        <p class="popup-message">
+          Thank you for your interest in partnering with BloodConnect! 
+          Our team will review your application and get back to you within 24 hours.
+        </p>
+        <button class="popup-close-btn" onclick="closePopup()">Got it!</button>
+      </div>
+    </div>
+
+    <!-- Error Popup Modal -->
+    <div class="popup-overlay" id="errorPopup">
+      <div class="popup-modal">
+        <div class="popup-icon">❌</div>
+        <h3 class="popup-title" style="background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Submission Failed</h3>
+        <p class="popup-message">
+          We're sorry, but there was an error submitting your form. 
+          Please try again or contact us directly at support@bloodconnect.com
+        </p>
+        <button class="popup-close-btn" onclick="closeErrorPopup()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>💉 BloodConnect</h3>
+        <p>Connecting donors with those in need, one drop at a time. Join our mission to save lives through safe and efficient blood donation.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="stories.html">Stories</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="partner.html">Partner With Us</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="#about">About Blood Donation</a>
+          <a href="#faq">FAQs</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BloodConnect. All rights reserved. Saving lives together.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Form submission with Formspree
+    const form = document.getElementById('partnerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    const successPopup = document.getElementById('successPopup');
+    const errorPopup = document.getElementById('errorPopup');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline-flex';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show success popup
+          successPopup.classList.add('show');
+          createConfetti();
+          
+          // Reset form
+          form.reset();
+        } else {
+          // Show error popup
+          errorPopup.classList.add('show');
+        }
+      } catch (error) {
+        // Show error popup on network failure
+        errorPopup.classList.add('show');
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+
+    // Close success popup
+    function closePopup() {
+      successPopup.classList.remove('show');
+    }
+
+    // Close error popup
+    function closeErrorPopup() {
+      errorPopup.classList.remove('show');
+    }
+
+    // Close popup when clicking outside
+    successPopup.addEventListener('click', function(e) {
+      if (e.target === successPopup) {
+        closePopup();
+      }
+    });
+
+    errorPopup.addEventListener('click', function(e) {
+      if (e.target === errorPopup) {
+        closeErrorPopup();
+      }
+    });
+
+    // Create confetti effect
+    function createConfetti() {
+      const colors = ['#dc2626', '#991b1b', '#fca5a5', '#fecaca'];
+      const confettiCount = 50;
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 0.3 + 's';
+        confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+        successPopup.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
