@@ -566,7 +566,7 @@ Go to Lambda Console → Select function → Test
 
 ## 👥 Contributors
 
-- **Your Name** - Full Stack Developer & Cloud Architect
+- **Siddharth Goutam Kumar** - Full Stack Developer & Cloud Architect
 
 ---
 
@@ -579,8 +579,8 @@ This project is licensed under the MIT License.
 ## 📞 Contact
 
 For questions or support:
-- **Email:** your.email@example.com
-- **GitHub:** github.com/yourusername
+- **Email:** kumarsiddharth166@gmail.com
+- **GitHub:** github.com/SiddharthKumar241
 - **LinkedIn:** linkedin.com/in/yourprofile
 
 ---
@@ -595,7 +595,6 @@ For questions or support:
 
 **🩸 RakhtSetu - Saving Lives, One Donation at a Time** 
 
-*Built with ❤️ using AWS Serverless Technol
+*Built with ❤️ using AWS Service by Siddharth
 
 
-aws s3 sync . s3://rakhtsetu --region eu-north-1
