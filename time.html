@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raktasetu - Donation Impact Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="../assets/journey.png" type="image/x-icon">
+<style>
+  :root {
+    --blood-red: #dc2626;
+    --blood-dark: #991b1b;
+    --blood-light: #fca5a5;
+    --blood-lighter: #fecaca;
+    --cream: #fef2f2;
+    --white: #ffffff;
+    --dark: #1f2937;
+    --gray: #6b7280;
+    --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.08);
+    --shadow-md: 0 8px 24px rgba(220, 38, 38, 0.12);
+    --shadow-lg: 0 16px 48px rgba(220, 38, 38, 0.18);
+    --shadow-xl: 0 24px 64px rgba(220, 38, 38, 0.24);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #fef2f2 0%, #fee2e2 50%, #fecaca 100%);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .blood-particle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 30% 30%, rgba(252, 165, 165, 0.5), rgba(220, 38, 38, 0.2));
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    animation: particleFloat linear infinite;
+  }
+
+  .blood-particle:nth-child(1) { left: 5%; animation-duration: 15s; }
+  .blood-particle:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; }
+  .blood-particle:nth-child(3) { left: 45%; animation-duration: 20s; animation-delay: 4s; }
+  .blood-particle:nth-child(4) { left: 65%; animation-duration: 16s; animation-delay: 1s; }
+  .blood-particle:nth-child(5) { left: 85%; animation-duration: 19s; animation-delay: 3s; }
+
+  @keyframes particleFloat {
+    0% {
+      top: -10%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      top: 110%;
+      opacity: 0;
+      transform: rotate(45deg) translateX(50px) scale(1.2);
+    }
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 40px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--blood-lighter);
+    border-radius: 50px;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+    }
+  }
+
+  .badge-icon {
+    font-size: 1.2rem;
+  }
+
+  .badge-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--blood-red);
+  }
+
+  .header-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .calculator-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: var(--shadow-xl);
+    border: 2px solid rgba(220, 38, 38, 0.1);
+    margin-bottom: 40px;
+  }
+
+  .input-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .input-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .donation-input {
+    width: 200px;
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--blood-red);
+    text-align: center;
+    border: 3px solid var(--blood-lighter);
+    border-radius: 15px;
+    background: white;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+  }
+
+  .donation-input:focus {
+    outline: none;
+    border-color: var(--blood-red);
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+  }
+
+  .calculate-btn {
+    margin-top: 20px;
+    padding: 18px 45px;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
+  }
+
+  .calculate-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .calculate-btn:active {
+    transform: translateY(-2px);
+  }
+
+  .timeline-container {
+    display: none;
+    position: relative;
+    padding: 40px 0;
+  }
+
+  .timeline-container.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--blood-lighter), var(--blood-red));
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 0.6s ease forwards;
+  }
+
+  .timeline-item:nth-child(even) {
+    transform: translateX(50px);
+  }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .timeline-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--blood-lighter);
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--blood-red);
+  }
+
+  .timeline-year {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 6px #fef2f2, var(--shadow-lg);
+    z-index: 2;
+  }
+
+  .timeline-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .timeline-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .timeline-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 15px;
+    background: rgba(220, 38, 38, 0.05);
+    border-radius: 12px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--blood-red);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 5px;
+  }
+
+  .aging-effect {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1rem;
+    margin-top: 15px;
+    font-style: italic;
+  }
+
+  .final-message {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-dark));
+    border-radius: 25px;
+    color: white;
+    margin-top: 80px;
+    animation: fadeIn 0.8s ease 1s backwards;
+    position: relative;
+  }
+
+  .final-message::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--blood-red), transparent);
+  }
+
+  .final-message-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .final-message h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+  }
+
+  .final-message p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    line-height: 1.8;
+  }
+
+  .final-message strong {
+    font-size: 1.4rem;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-underline-offset: 4px;
+  }
+
+  .back-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 1.5rem;
+    background: white;
+    color: var(--blood-red);
+    border: 2px solid var(--blood-lighter);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    justify-content: center;
+  }
+
+  .back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--blood-red);
+    background: var(--blood-red);
+    color: white;
+  }
+
+  .back-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 100px 20px 40px;
+    }
+
+    .header-title {
+      font-size: 2.5rem;
+    }
+
+    .calculator-card {
+      padding: 40px 20px;
+    }
+
+    .timeline-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+    <div class="blood-particle"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">🩸</div>
+        <span class="logo-text">Raktasetu</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-badge">
+        <span class="badge-icon">⏰</span>
+        <span class="badge-text">Impact Time Machine</span>
+      </div>
+      <h1 class="header-title">Your Donation Journey</h1>
+      <p class="header-subtitle">
+        Enter your donation count and travel through time to see the exponential impact you'll create over the years
+      </p>
+    </div>
+
+    <div class="calculator-card">
+      <div class="input-section">
+        <label class="input-label">How many times have you donated?</label>
+        <input type="number" id="donationCount" class="donation-input" value="1" min="0" max="100">
+        <br>
+        <button class="calculate-btn" onclick="calculateImpact()">
+          🚀 Travel Through Time
+        </button>
+      </div>
+
+      <div id="timeline" class="timeline-container">
+        <div class="timeline-line"></div>
+        <div id="timelineContent"></div>
+      </div>
+    </div>
+
+    <div class="back-buttons">
+      <a href="dashboard.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="register.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="8.5" cy="7" r="4"></circle>
+          <line x1="20" y1="8" x2="20" y2="14"></line>
+          <line x1="23" y1="11" x2="17" y2="11"></line>
+        </svg>
+        <span>Register</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function calculateImpact() {
+      const donationCount = parseInt(document.getElementById('donationCount').value) || 0;
+      
+      if (donationCount === 0) {
+        alert('Please enter at least 1 donation to see your impact!');
+        return;
+      }
+
+      const timeline = document.getElementById('timeline');
+      const timelineContent = document.getElementById('timelineContent');
+      
+      timelineContent.innerHTML = '';
+      timeline.classList.remove('active');
+      
+      setTimeout(() => {
+        timeline.classList.add('active');
+        generateTimeline(donationCount);
+      }, 100);
+    }
+
+    function generateTimeline(baseCount) {
+      const timelineContent = document.getElementById('timelineContent');
+      const years = [1, 3, 5, 10];
+      
+      years.forEach((year, index) => {
+        setTimeout(() => {
+          const totalDonations = baseCount + (year * 2);
+          const livesSaved = totalDonations * 3;
+          const unitsOfBlood = totalDonations * 450;
+          const hospitals = Math.floor(totalDonations / 5) + 1;
+          const emergencies = Math.floor(totalDonations * 1.5);
+          
+          const item = document.createElement('div');
+          item.className = 'timeline-item';
+          item.style.animationDelay = `${index * 0.2}s`;
+          
+          item.innerHTML = `
+            <div class="timeline-year">${year}Y</div>
+            <div class="timeline-content">
+              <div class="timeline-icon">${getYearIcon(year)}</div>
+              <h3 class="timeline-title">Year ${year}</h3>
+              <div class="timeline-stats">
+                <div class="stat-item">
+                  <div class="stat-number">${livesSaved}</div>
+                  <div class="stat-label">Lives Saved</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">${totalDonations}</div>
+                  <div class="stat-label">Total Donations</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">${(unitsOfBlood / 1000).toFixed(1)}L</div>
+                  <div class="stat-label">Blood Donated</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">${hospitals}</div>
+                  <div class="stat-label">Hospitals Helped</div>
+                </div>
+              </div>
+              <div class="aging-effect">${getAgingMessage(year)}</div>
+            </div>
+          `;
+          
+          timelineContent.appendChild(item);
+          
+          if (index === years.length - 1) {
+            setTimeout(() => {
+              const finalMessage = document.createElement('div');
+              finalMessage.className = 'final-message';
+              finalMessage.innerHTML = `
+                <span class="final-message-icon">🎉</span>
+                <h2>Your Legacy Awaits</h2>
+                <p>In 10 years, you'll have saved <strong>${livesSaved} lives</strong>.<br>
+                Imagine ${livesSaved} people celebrating birthdays, graduations, and precious moments because of you.</p>
+              `;
+              timelineContent.appendChild(finalMessage);
+            }, 500);
+          }
+        }, index * 600);
+      });
+    }
+
+    function getYearIcon(year) {
+      const icons = {
+        1: '🌱',
+        3: '🌿',
+        5: '🌳',
+        10: '🏆'
+      };
+      return icons[year] || '⭐';
+    }
+
+    function getAgingMessage(year) {
+      const messages = {
+        1: 'Just getting started on your hero journey',
+        3: 'Building a legacy of compassion',
+        5: 'You\'re a veteran lifesaver now',
+        10: 'A decade of saving lives - legendary status!'
+      };
+      return messages[year] || '';
+    }
+
+    window.addEventListener('load', () => {
+      const input = document.getElementById('donationCount');
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          calculateImpact();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
